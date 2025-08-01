@@ -1,0 +1,40 @@
+
+[project]
+name = "taskhelper"
+version = "0.1.0"
+description = "MCP server and CLI for managing hierarchical tasks in software projects"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "alembic>=1.16.4",
+    "click>=8.2.1",
+    "mcp[cli]>=1.12.3",
+    "pydantic>=2.11.7",
+    "sqlalchemy>=2.0.42",
+    "sqlite-utils>=3.38",
+    "tabulate>=0.9.0",
+]
+
+[project.scripts]
+taskhelper = "taskhelper.cli:cli"
+taskhelper-mcp = "taskhelper.mcp:run_mcp"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "fastmcp>=2.11.0",
+    "pytest>=8.4.1",
+    "ruff>=0.8.3",
+    "taskhelper[cli]",
+    "trio>=0.30.0",
+    "ty>=0.0.1a16",
+]
+
+[tool.uv.workspace]
+members = ["."]
+
+[tool.uv.sources]
+taskhelper = { workspace = true }
